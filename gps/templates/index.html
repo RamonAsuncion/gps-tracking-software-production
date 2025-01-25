@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time GPS Tracking</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+    <script type="text/javascript">
+        let map, marker;
+
+        function initMap() {
+            const initialLocation = {lat: 37.4221, lng: -122.0841};
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: initialLocation
+            });
+            marker = new google.maps.Marker({
+                position: initialLocation,
+                map: map
+            });
+            fetchLocation();
+        }
+
+        function fetchLocation() {
+            fetch('/location')
+            .then(response => response.json())
+            .then(data => {
+                const newPosition = new google.maps.LatLng(data.latitude, data.longitude);
+                marker.setPosition(newPosition);
+                map.panTo(newPosition);
+                setTimeout(fetchLocation, 2000); // Update location every 2 seconds
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+# Node modules
+iot-env/
+/node_modules
+webserver/node_modules
+webserver/.pnp
+webserver/.pnp.js
+webserver/.yarn/install-state.gz
+
+# Testing
+webserver/coverage
+
+# Secret passwords
+**/secret.py
+
+# Next.js
+webserver/.next/
+webserver/out/
+
+# Production
+webserver/build
+
+# Misc
+webserver/.DS_Store
+webserver/*.pem
+
+# Debug
+webserver/npm-debug.log*
+webserver/yarn-debug.log*
+webserver/yarn-error.log*
+
+# Local env files
+webserver/.env*.local
+
+# Vercel
+webserver/.vercel
+
+# Ignore deleting setup.sh
+setup.sh
+
+# TypeScript
+webserver/*.tsbuildinfo
+webserver/next-env.d.ts
